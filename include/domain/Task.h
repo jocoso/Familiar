@@ -22,8 +22,6 @@ namespace Familiar {
             TaskStatus getStatus() const;
             void setStatus(TaskStatus status);
             
-            
-      
         public:
             int id = 0;
             int projectId = 0;
@@ -31,7 +29,5 @@ namespace Familiar {
             std::string title;
             std::string description;
             TaskStatus status = TaskStatus::Pending;
-            
-
     };
 }

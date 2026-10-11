@@ -10,7 +10,7 @@ namespace Familiar {
     };
     class Project {
         public:
-            explicit Project(int id);
+            explicit Project(int id, std::string name, std::string desc, ProjectStatus);
             int getId() const;
             const std::string& getName() const;
             void setName(const std::string& name);
@@ -19,9 +19,9 @@ namespace Familiar {
             ProjectStatus getStatus() const;
             void setStatus(ProjectStatus status);
         public:
-           int id = 0;
-           std::string name; 
-           std::string description;
-           ProjectStatus status = ProjectStatus::Active;
+            int id = 0;
+            std::string name; 
+            std::string description;
+            ProjectStatus status = ProjectStatus::Active;
     };
 }

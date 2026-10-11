@@ -2,7 +2,8 @@
 
 namespace Familiar {
     
-    Project::Project(int id):id(id) {}
+    Project::Project(int id, std::string name, std::string desc, ProjectStatus parent=ProjectStatus::Active):
+        id(id), name(name), description(desc), status(parent) {}
     int Project::getId() const {
         return id;
     }
