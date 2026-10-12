@@ -46,6 +46,12 @@ namespace Familiar {
                 
         }
     }
+
+    void TerminalInterface::killSwitch() 
+    {
+        isRunning = false;
+    }
+
     bool TerminalInterface::handleChoice(int choice) 
     {
         switch (choice) {
@@ -57,6 +63,7 @@ namespace Familiar {
                 break;
             case 3:
                 // Exit
+                killSwitch();
                 break;
             default:
                 std::cout << "Invalid choice\n";
@@ -68,9 +75,12 @@ namespace Familiar {
     void TerminalInterface::run() 
     {
         showTitle();
-        showMenu();
-        int choice = readMenuChoice();
-        handleChoice(choice);
+        while(isRunning) 
+        {
+            showMenu();
+            int choice = readMenuChoice();
+            handleChoice(choice);
+        }
 
 
     }
