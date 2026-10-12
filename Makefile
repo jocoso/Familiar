@@ -1,12 +1,13 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude
+CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude -MMD -MP
 TARGET := familiar
 SOURCES := \
 	src/main.cpp \
 	src/Familiar.cpp \
 	src/Project.cpp \
 	src/Task.cpp \
-	src/User.cpp
+	src/User.cpp \
+	src/ui/TerminalInterface.cpp
 
 OBJECTS := $(SOURCES:.cpp=.o)
 DEPS := $(OBJECTS:.o=.d)
