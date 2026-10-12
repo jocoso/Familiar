@@ -12,6 +12,9 @@ anxiety, depression, stress, burnout, or other mental and cognitive challenges.
 It acts as a virtual companion that helps users organize projects, break overwhelming goals into smaller steps, 
 and focus on what they can do right now.
 
+<img width="524" height="443" alt="image" src="https://github.com/user-attachments/assets/5460e2ea-1636-4d28-88a1-cf94d0f2516b" />
+
+
 # Why Familiar?
 
 Many productivity systems assume that the user can:
