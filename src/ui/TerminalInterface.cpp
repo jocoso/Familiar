@@ -1,4 +1,5 @@
 #include "ui/TerminalInterface.h"
+#include "persistence/ProjectManager.h"
 #include <iostream>
 #include <string>
 #include <limits>
@@ -21,7 +22,7 @@ namespace Familiar {
     bool isValidMenuChoice(int choice) {
         return choice >= 1 && choice <= 3;
     }
-
+ 
     int TerminalInterface::readMenuChoice() {
         int choice;
 
@@ -42,8 +43,7 @@ namespace Familiar {
                 std::numeric_limits<std::streamsize>::max(), '\n'
             );
                 
-            showMenu();
-                
+            showMenu();     
         }
     }
 
@@ -52,19 +52,34 @@ namespace Familiar {
         isRunning = false;
     }
 
-    bool TerminalInterface::handleChoice(int choice) 
+    bool TerminalInterface::handleChoice(int choice)
     {
         switch (choice) {
-            case 1:
-                // Opt 1
+            case 1: {
+                // Create a project
+                Familiar::Project p{
+                    0,
+                    "foo",
+                    "A test project",
+                    Familiar::ProjectStatus::Active
+                };
+
+                Familiar::ProjectManager manager;
+                manager.createProject(p);
+
+                std::cout << "Project created successfully!\n";
                 break;
+            }
+
             case 2:
-                // Opt 2
+                // Option 2
                 break;
+
             case 3:
                 // Exit
                 killSwitch();
                 break;
+
             default:
                 std::cout << "Invalid choice\n";
                 return false;
@@ -74,14 +89,12 @@ namespace Familiar {
 
     void TerminalInterface::run() 
     {
-        showTitle();
         while(isRunning) 
         {
+            showTitle();
             showMenu();
             int choice = readMenuChoice();
             handleChoice(choice);
         }
-
-
-    }
+    } //
 } // Closes readMenuChoice

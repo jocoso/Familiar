@@ -1,6 +1,39 @@
+#ifndef FAMILIAR_PROJECT_H
+#define FAMILIAR_PROJECT_H
+
 #pragma once
 
 #include <string>
+
+/** 
+CLASS Project
+    PRIVATE:
+        id: Integer
+        name: String
+        description: String
+        status: ProjectStatus
+
+    PUBLIC:
+        CONSTRUCTOR Project(id, name, description, status)
+
+        getId() -> Integer
+        getName() -> String
+        setName(name: String)
+
+        getDescription() -> String
+        setDescription(description: String)
+
+        getStatus() -> ProjectStatus
+        setStatus(status: ProjectStatus)
+END CLASS
+
+
+ENUM ProjectStatus
+    Active = 1
+    Completed = 2
+    Archived = 3
+END ENUM
+*/
 
 namespace Familiar {
     enum ProjectStatus {
@@ -25,3 +58,5 @@ namespace Familiar {
             ProjectStatus status = ProjectStatus::Active;
     };
 }
+
+#endif // FAMILIAR_PROJECT_H

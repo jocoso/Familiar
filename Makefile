@@ -5,6 +5,7 @@ SOURCES := \
 	src/main.cpp \
 	src/Familiar.cpp \
 	src/Project.cpp \
+	src/ProjectManager.cpp \
 	src/Task.cpp \
 	src/User.cpp \
 	src/ui/TerminalInterface.cpp

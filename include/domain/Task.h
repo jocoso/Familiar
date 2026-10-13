@@ -1,7 +1,20 @@
+
 #pragma once
 
 #include <string>
 #include "Project.h"
+
+/** 
+CLASS Task
+    PRIVATE:
+        taskData
+
+    PUBLIC:
+        initializeTask()
+        getTaskData()
+        updateTaskData()
+END CLASS
+*/
 
 namespace Familiar {
     enum class TaskStatus {
@@ -14,11 +27,16 @@ namespace Familiar {
     class Task {
         public:
             Task(const Project& parent, int id);
+            
             int getId() const;
+            int getProjectId() const;
+
             const std::string& getTitle() const;
             void setTitle(const std::string& title);
+
             const std::string& getDescription() const;
             void setDescription(const std::string& desc);
+
             TaskStatus getStatus() const;
             void setStatus(TaskStatus status);
             
@@ -28,6 +46,7 @@ namespace Familiar {
 
             std::string title;
             std::string description;
+            
             TaskStatus status = TaskStatus::Pending;
     };
 }
