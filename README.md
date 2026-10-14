@@ -14,6 +14,12 @@ The goal is simple:
 
 <img width="524" height="443" alt="Familiar application preview" src="https://github.com/user-attachments/assets/5460e2ea-1636-4d28-88a1-cf94d0f2516b" />
 
+
+
+https://github.com/user-attachments/assets/4d6f3996-0f9d-4a06-9ffa-71a57a8c06aa
+
+
+
 ---
 
 ## Table of Contents
