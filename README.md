@@ -1,5 +1,7 @@
 # Familiar
 
+<img width="960" height="926" alt="fa43a82380a3dfbaa9a53a7dca9a0736" src="https://github.com/user-attachments/assets/d18b6d99-eac6-445f-8ac1-faa693233297" />
+
 **A productivity companion for navigating projects, overcoming task initiation barriers, and making progress one step at a time.**
 
 Familiar is an open-source productivity application inspired by the familiar mechanic in Dungeons & Dragons. It explores a different approach to productivity: instead of relying on willpower, rigid schedules, or overwhelming task lists, Familiar aims to help users identify their next actionable step and make progress at a sustainable pace.
