@@ -8,7 +8,8 @@ SOURCES := \
 	src/ProjectManager.cpp \
 	src/Task.cpp \
 	src/User.cpp \
-	src/ui/TerminalInterface.cpp
+	src/ui/TerminalInterface.cpp \
+	src/ErrorHandler.cpp 
 
 OBJECTS := $(SOURCES:.cpp=.o)
 DEPS := $(OBJECTS:.o=.d)
