@@ -1,440 +1,563 @@
 # Familiar
 
-A virtual familiar for people who want help navigating projects, tasks, and focus. Especially when getting started is simple.
-Familiar is a productivity companion inspired by the familiar mechanic in Dungeons & Dragons.
-Instead of treating productivity as a matter of willpower, Familiar is designed around a more productive idea:
-Sometimes the hardest part of a task is doing the work and getting started. This app was made with people 
-who struggle with focus, task initiation, organization, working memory, overwhelm, motivation, and 
-maintaining momentum for many different reasons. These difficulties can be associated with conditions such as ADHD, 
-anxiety, depression, stress, burnout, or other mental and cognitive challenges.
+**A productivity companion for navigating projects, overcoming task initiation barriers, and making progress one step at a time.**
 
+Familiar is an open-source productivity application inspired by the familiar mechanic in Dungeons & Dragons. It explores a different approach to productivity: instead of relying on willpower, rigid schedules, or overwhelming task lists, Familiar aims to help users identify their next actionable step and make progress at a sustainable pace.
 
-It acts as a virtual companion that helps users organize projects, break overwhelming goals into smaller steps, 
-and focus on what they can do right now.
+The project is designed with people who experience difficulties with focus, task initiation, organization, working memory, motivation, and maintaining momentum. These challenges can arise for many reasons, including ADHD, anxiety, depression, stress, burnout, and other personal or environmental circumstances.
 
-<img width="524" height="443" alt="image" src="https://github.com/user-attachments/assets/5460e2ea-1636-4d28-88a1-cf94d0f2516b" />
+Rather than treating productivity as a measure of discipline or personal worth, Familiar approaches it as a process that should adapt to the individual.
 
+The goal is simple:
 
-# Why Familiar?
+**Help users turn overwhelming projects into manageable actions, regain their bearings when they lose momentum, and move forward without unnecessary pressure.**
 
-Many productivity systems assume that the user can:
+<img width="524" height="443" alt="Familiar application preview" src="https://github.com/user-attachments/assets/5460e2ea-1636-4d28-88a1-cf94d0f2516b" />
 
-Decide what needs to be done.
-Break large projects into reasonable tasks.
-Prioritize those tasks.
-Start working immediately.
-Remember what they were doing.
-Maintain attention.
-Recover quickly after getting distracted.
+---
 
-For someone struggling with focus, these assumptions can make productivity systems feel like another source of failure.
-A user may know exactly what they need to do and still be unable to start. Sometimes the problem is task initiation, 
-executive functioning, cognitive overload, emotional resistance, or simply having too many things competing for attention 
-at once.
+## Table of Contents
 
-Familiar aims to address the problem by asking a smaller question:
+- [Why Familiar?](#why-familiar)
+- [Design Philosophy](#design-philosophy)
+- [Planned Features](#planned-features)
+- [Mental Health and Accessibility](#mental-health-and-accessibility)
+- [Technology](#technology)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
 
-"Are we working on something already started?"
-"What's the next thing we can do?"
+---
 
-Design Philosophy
+## Why Familiar?
 
-Familiar is built around several principles.
+Many productivity systems assume that users can consistently:
 
-1. No judgment
+- Identify what needs to be done.
+- Break large projects into manageable tasks.
+- Prioritize competing responsibilities.
+- Begin working without significant difficulty.
+- Remember where they left off.
+- Maintain attention over time.
+- Recover quickly after interruptions.
 
-Missing a task shouldn't result in punishment, shame, or a message implying that the user failed.
-The familiar should respond more like a supportive companion offering ways to get the task done.
+For some people, these expectations create additional friction rather than reducing it.
 
+A person may understand exactly what needs to be done and still struggle to begin. A large project may feel too ambiguous to approach, an extensive task list may increase cognitive overload, or returning to unfinished work may require reconstructing hours of lost context.
 
-2. Reduce the activation energy
+Familiar aims to address these challenges by reducing the amount of planning, decision-making, and mental effort required to take the next step.
 
-A task such as:
+Instead of asking users to manage everything at once, Familiar centers the experience around two questions:
 
-Write my research paper. can feel enormous.
+**What are we working on?**
 
-Familiar should help transform it into:
+**What's the next thing we can do?**
 
-Quest: Research Paper
+The intention is not to eliminate planning or long-term organization. It is to make those activities more manageable and help users translate intentions into actions.
+
+## Design Philosophy
+
+Familiar is guided by several core principles.
+
+### 1. No Judgment
+
+Missing a goal, abandoning a task, or taking an extended break should not result in punishment or shame.
+
+Familiar should behave like a supportive companion: helping users understand their current situation, identify a reasonable next step, and resume work when they are ready.
+
+Progress should be encouraged without implying that productivity determines personal worth.
+
+### 2. Reduce the Activation Energy
+
+Large or ambiguous tasks can be difficult to begin.
+
+For example:
+
+**Original task:**
+> Write my research paper.
+
+Familiar could help transform it into a sequence of smaller actions.
+
+**Quest: Research Paper**
 
 1. Open the document.
 2. Write the title.
-3. Find one source.
+3. Find one relevant source.
 4. Write three notes.
 5. Take a short break.
 
+The objective is to make the first action small enough to begin without requiring the user to complete the entire project immediately.
 
-The objective is to make the user complete the entire project immediately or the first action small enough to begin.
+Tasks can then be expanded or adjusted as the project develops.
 
-3. One step at a time
+### 3. One Step at a Time
 
-When someone is overwhelmed, showing them 30 tasks may make the problem worse.
+Presenting an extensive list of unfinished work can increase the feeling of being overwhelmed.
 
-Familiar should be capable of presenting:
-
-Current Quest
-
- Open your project document.
-
-
-After completion:
-
-Next Quest
-
- Write three ideas for your introduction.
-
-
-The user can still see the larger project when they need it, but they don't have to mentally process everything at once.
-
-4. Flexible productivity
-
-Not every day has the same amount of available energy or focus.
-
-Familiar should avoid assuming that productivity is constant.
-
-A user might select a current state such as:
-
-How are you doing?
-
-🟢 Plenty of energy
-🟡 Somewhat focused
-🟠 Struggling
-🔴 Overwhelmed
-
-
-Familiar can then adjust the difficulty of recommended tasks.
+Familiar aims to make the immediate next action easy to identify while keeping the larger project accessible when needed.
 
 For example:
 
-🟢 Plenty of energy
+**Current Quest**
 
-Work on the next major feature.
+Open your project document.
 
+After completing that action:
 
-versus:
+**Next Step**
 
-🔴 Overwhelmed
+Write three ideas for your introduction.
 
-Open the project.
+The user retains visibility into the larger objective without having to mentally process every outstanding task at once.
 
-That's it for now.
+### 4. Flexible Productivity
 
-## Focus-Friendly Features
+Energy, attention, and available time vary from day to day.
 
-The following features are potential directions for making Familiar more useful for people experiencing genuine difficulties with focus and executive functioning.
+Familiar should not assume that users can maintain a constant level of productivity.
 
-## 🪜 Task Decomposition
+A future version could let users indicate how they are feeling:
 
-Allow users to give Familiar a large or vague objective:
+**How are you doing today?**
 
-"Build my portfolio."
+- 🟢 Plenty of energy
+- 🟡 Somewhat focused
+- 🟠 Struggling to get started
+- 🔴 Overwhelmed
 
-Familiar could help turn it into progressively smaller actions:
-
-Build Portfolio
-
-│
-
-├── Choose projects
-
-│   ├── Find project #1
-
-│   ├── Find project #2
-
-│   └── Find project #3
-
-│
-
-├── Create portfolio structure
-
-│   ├── Create homepage
-
-│   ├── Add projects section
-
-│   └── Add contact section
-
-│
-
-└── Publish
-
-
-Breaking a task down should reduce cognitive load and not create another overwhelming list.
-
-# The "Next Step" System
-
-Instead of constantly displaying an entire task list, Familiar could maintain a single recommended next action.
-
-╭──────────────────────────╮
-
-│    Your Familiar         │
-
-│                          │
-
-│ Current Quest: Portfolio │
-
-│                          │
-
-│ Your next step:          │
-
-│                          │
-
-│ Open your project folder.│
-
-│                          │
-
-│ [ Done ]   [ Not Yet ]   │
-
-╰──────────────────────────╯
-
-
-This keeps the user's attention on progress rather than the entire workload.
-
-# Gentle Focus Sessions
-
-Focus sessions should be customizable rather than forcing everyone into a rigid productivity technique.
-
-Possible options:
-
-5 minutes
-10 minutes
-15 minutes
-25 minutes
-45 minutes
-Custom
-
-
-A user should also be able to say:
-
-"I can't focus today."
-
-
-and receive a smaller goal rather than being treated as having failed.
-
-Familiar should recognize breaks as part of the workflow.
-
-
-# 🔄 Easy Recovery
-
-Getting distracted shouldn't reset someone's progress.
-
-If a user leaves a task for several hours, or several days, Familiar should make returning easy.
+Recommendations could then adapt to the user's stated capacity.
 
 For example:
 
-Welcome back!
+**Plenty of energy:** Work on the next major feature.
+
+**Feeling overwhelmed:** Open the project and identify one small task.
+
+The purpose is to make progress more accessible, not to pressure users into doing more than they can reasonably manage.
+
+---
+
+## Planned Features
+
+The following features represent potential directions for Familiar's development. They are design goals rather than a claim that every feature is currently implemented.
+
+### Task Decomposition
+
+Familiar aims to help users transform large, ambiguous objectives into smaller, actionable tasks.
+
+For example, the objective *Build my portfolio* could become:
+
+Build Portfolio | +-- Choose Projects | +-- Identify project one | +-- Identify project two | +-- Identify project three | +-- Create Portfolio Structure | +-- Create homepage | +-- Add projects section | +-- Add contact section | +-- Publish
+
+
+Task decomposition should reduce cognitive load rather than produce another overwhelming list.
+
+Users should be able to adjust the resulting tasks to match their needs, preferences, and available resources.
+
+### The Next Step System
+
+Familiar could offer a dedicated focus view that emphasizes one recommended action at a time.
+
++----------------------------------+ | Your Familiar | | | | Current Quest: Portfolio | | | | Your Next Step: | | | | Open your project folder. | | | | [ Done ] [ Not Yet ] | +----------------------------------+
+
+
+This approach keeps attention on the next actionable step rather than the entire workload.
+
+The larger project remains available, but users do not need to navigate it continuously to make progress.
+
+### Gentle Focus Sessions
+
+Focus sessions should be customizable rather than requiring everyone to follow a fixed productivity technique.
+
+Potential session lengths include:
+
+- 5 minutes
+- 10 minutes
+- 15 minutes
+- 25 minutes
+- 45 minutes
+- A custom duration
+
+Users should also be able to indicate when focusing is difficult and choose a smaller objective instead.
+
+Breaks should be treated as a normal part of the workflow, not as interruptions that need to be justified.
+
+### Easy Recovery
+
+Losing momentum should not mean losing progress.
+
+Whether a user steps away for several hours or several days, Familiar should make returning to unfinished work straightforward.
+
+For example:
+
+**Welcome back!**
 
 You were working on:
-"Add authentication."
+
+*Add authentication.*
 
 Last completed:
-✓ Create login form
 
-Next suggested step:
-→ Connect the login form to the server.
+- Create the login form.
 
+Suggested next step:
 
-# Context Restoration
+- Connect the login form to the server.
 
-One difficult part of returning to a project is remembering what you were doing.
+The goal is to make resuming work easier than reconstructing the entire plan from memory.
 
-Familiar could maintain a lightweight project state:
+### Context Restoration
 
-Current Project: Book Club
+Returning to a project can require remembering decisions, unfinished work, and the reasoning behind previous actions.
 
-Last worked on:
-Authentication
-
-Completed:
-✓ Login page
-✓ Registration form
-
-Currently working on:
-Session handling
-
-Next:
-Test login persistence
-
-Notes:
-"Need to investigate cookie configuration."
-
-
-This reduces the amount of mental effort required to reconstruct the user's previous context.
-
-# Brain Dump Mode
-
-Sometimes organizing tasks is itself the problem.
-
-Familiar could allow users to dump thoughts without requiring immediate organization:
-
-"I need to finish my resume,
-email my professor,
-fix the login page,
-buy groceries,
-and I still haven't finished that assignment."
-
-
-Familiar could then help organize the information into:
-
-📚 School
-📄 Resume
-💻 Coding
-🏠 Personal
-
-
-The user shouldn't have to organize everything before getting help organizing it.
-
-🐾 Familiar Personalities
-
-Different users may respond better to different interaction styles.
-
-Possible personalities could include:
-
-🦊 Encouraging
-🐱 Calm
-🐉 Motivational
-🦉 Analytical
-🐕 Friendly
-🐸 Playful
-🐢 Patient
-
-Users should be able to choose how their familiar communicates.
+Familiar could maintain a lightweight record of project context.
 
 For example:
 
-Encouraging
-"You've already completed two steps. Let's tackle one more."
-Calm
-"No rush. Let's work on the smallest next step."
-Playful
-"A wild task appeared! Let's defeat it."
+**Current Project:** Book Club Application
 
-## Mental Health Considerations
+**Last worked on:** Authentication
 
-Familiar is intended to support productivity—not diagnose, treat, or replace professional mental health care.
+**Completed:**
+- Login page
+- Registration form
 
-The project should avoid language that implies:
+**Current task:** Session handling
 
-- Users are lazy.
-- Users lack discipline.
-- Productivity determines personal worth.
-- Missing goals is a moral failure.
-- Everyone should be able to work the same way.
-- More productivity is always better.
+**Next step:** Test login persistence.
 
-Instead, Familiar should treat productivity as something that can be affected by energy, environment, stress, attention, workload, and individual circumstances.
+**Notes:** Investigate cookie configuration.
 
-The application should encourage users to seek appropriate professional support when they need it rather than attempting to function as a therapist or medical treatment.
+This information would help users recover their place in a project without having to reconstruct the entire context themselves.
 
-## Anti-Shame Design
+### Brain Dump Mode
 
-Familiar should intentionally avoid productivity mechanics that can make struggling users feel worse.
+Sometimes organizing thoughts is itself a barrier to getting started.
 
-Features should be carefully evaluated before implementing:
+A brain dump feature could allow users to record unstructured thoughts, responsibilities, and reminders without organizing them beforehand.
 
-Punishing missed goals
-Aggressive streak systems
-Shame-based notifications
-"You failed" messages
-Productivity leaderboards
-Comparing users to other people
-Excessive notifications
-Artificial urgency
-Constant productivity scoring
+For example:
 
-Gamification can be useful, but the user should feel like they are playing with their familiar.
+> I need to finish my resume, email my professor, fix the login page, buy groceries, and finish that assignment.
 
-## Progress Without Pressure
+Familiar could help organize these items into categories such as:
 
-Instead of measuring only completed tasks, Familiar could track positive indicators such as:
+- Education
+- Career
+- Development
+- Personal
 
-- Started a task
-- Returned to a project
-- Completed one step
-- Asked for help
-- Took a needed break
-- Made progress after being stuck
+The principle is straightforward: users should not need to organize everything before receiving help organizing it.
 
+### Familiar Personalities
+
+Different users may prefer different communication styles.
+
+Familiar could offer customizable personalities, including:
+
+- 🦊 Encouraging
+- 🐱 Calm
+- 🐉 Motivational
+- 🦉 Analytical
+- 🐕 Friendly
+- 🐸 Playful
+- 🐢 Patient
+
+For example:
+
+**Encouraging**
+> You've already completed two steps. Let's tackle one more.
+
+**Calm**
+> No rush. Let's find the smallest next step.
+
+**Playful**
+> A wild task appeared! Let's see how we can tackle it.
+
+Users should be able to choose the interaction style that feels most comfortable and useful to them.
+
+---
+
+## Mental Health and Accessibility
+
+Familiar is intended to support organization and productivity. It is not designed to diagnose, treat, or replace professional mental health care.
+
+The project recognizes that productivity can be influenced by many factors, including attention, energy, stress, environment, workload, and individual circumstances.
+
+Its design should avoid language or mechanics that imply:
+
+- People are lazy when they struggle to begin.
+- Difficulty with productivity reflects a lack of discipline.
+- Personal worth depends on completed tasks.
+- Missing a goal represents a moral failure.
+- Everyone should work in the same way.
+- Greater productivity is always the appropriate objective.
+
+Familiar should encourage users to seek professional support when appropriate without attempting to function as a therapist or medical treatment.
+
+### Anti-Shame Design
+
+Productivity mechanics should be evaluated for their potential to create unnecessary pressure.
+
+Features requiring particular care include:
+
+- Punishments for missed goals.
+- Aggressive streak systems.
+- Shame-based notifications.
+- Failure-oriented messaging.
+- Productivity leaderboards.
+- Comparisons between users.
+- Excessive notifications.
+- Artificial urgency.
+- Constant productivity scoring.
+
+Gamification can make progress engaging, but it should support the user's goals rather than make the user feel accountable to an arbitrary system.
+
+The familiar should feel like a companion, not another source of pressure.
+
+### Progress Without Pressure
+
+Progress does not always mean finishing a task.
+
+Familiar could recognize other meaningful actions, including:
+
+- Starting a difficult task.
+- Returning to an unfinished project.
+- Completing one small step.
+- Asking for help.
+- Taking a needed break.
+- Making progress after feeling stuck.
+
+Recognizing these actions could help users develop a more flexible and sustainable relationship with productivity.
+
+### Accessibility as a Design Principle
+
+Accessibility should inform the application from the beginning rather than being treated as a later enhancement.
+
+Potential areas of focus include:
+
+- Clear and predictable navigation.
+- Minimal unnecessary interaction.
+- Readable text and consistent visual hierarchy.
+- Keyboard accessibility.
+- Customizable interaction styles.
+- Flexible task and session management.
+- Clear recovery from interruptions.
+- User control over reminders and notifications.
+
+The objective is to make Familiar useful to people with different needs, preferences, and working styles.
+
+---
 
 ## Technology
 
-Familiar is currently developed primarily with:
+Familiar is currently being developed primarily in **C++**, with an emphasis on modular design and maintainable application architecture.
 
-C++
-Modular project structure
-Automated development workflows
-Testing infrastructure
-Project documentation
-📁 Project Structure
-familiar/
-├── Assets/
-├── docs/
-├── sample/
-├── tests/
-├── Makefile
-└── ...
+The project is organized around separate components for application coordination, terminal interaction, domain models, and persistence.
 
-Assets/
+Development infrastructure includes:
 
-Contains project resources used by Familiar.
+- A Makefile-based build workflow.
+- Modular source and header files.
+- A dedicated testing directory.
+- Project documentation.
+- Sample and supporting resources.
 
-docs/
+The specific implementation and availability of individual features will evolve as development progresses.
 
-Contains project documentation and supporting information.
+## Project Structure
 
-sample/
+The repository currently follows a modular structure similar to the following:
 
-Contains sample/example resources.
+familiar/ ├── include/ │ ├── domain/ │ ├── persistence/ │ └── ui/ ├── src/ │ ├── ui/ │ ├── main.cpp │ ├── Familiar.cpp │ ├── Project.cpp │ ├── ProjectManager.cpp │ ├── Task.cpp │ ├── User.cpp │ └── ErrorHandler.cpp ├── Assets/ ├── docs/ ├── sample/ ├── tests/ ├── Makefile └── README.md
 
-tests/
 
-Contains tests used to verify application behavior.
+The exact directory contents may change as the application develops.
 
-Makefile
+### Key Components
 
-Provides development commands for common project tasks.
+**`include/` and `src/`**
 
-# 🚀 Getting Started
+Contain the application's declarations and implementations, organized by responsibility.
+
+**`domain/`**
+
+Contains domain models representing application concepts such as projects, tasks, and users.
+
+**`persistence/`**
+
+Contains components responsible for project persistence and related data operations.
+
+**`ui/`**
+
+Contains the terminal interface and user-interaction logic.
+
+**`Assets/`**
+
+Contains project resources and supporting assets.
+
+**`docs/`**
+
+Contains project documentation and design notes.
+
+**`sample/`**
+
+Contains sample resources and examples.
+
+**`tests/`**
+
+Provides a location for automated tests and behavior verification.
+
+**`Makefile`**
+
+Defines common development commands for compiling, running, and cleaning the application.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+Building Familiar currently requires:
+
+- A C++ compiler with C++17 support.
+- GNU Make.
+- Git.
+
+The instructions below assume a Unix-like development environment with `g++` and `make` installed.
+
+### Installation
 
 Clone the repository:
 
-git clone https://github.com/jocoso/familiar.git
-cd familiar
+git clone https://github.com/jocoso/familiar.git cd familiar
 
 
-Follow the project's installation and setup instructions.
+Build the application:
 
-Development commands can be accessed through the included Makefile.
+make
 
-# 🗺️ Roadmap
 
-Potential future development includes:
+Run Familiar:
 
-Intelligent task decomposition
-"Next Step" focus mode
-Brain dump → organized tasks
-Focus sessions
-Flexible break system
-Context restoration
-Project progress tracking
-Familiar personalities
-Custom familiar creation
-Gentle reminders
-Adaptive task difficulty
-Gamified progression
-Project notes and memory
-Accessibility improvements
-Optional AI-assisted planning
+make run
 
-# 🤝 Contributing
 
-Familiar is a project about building technology that treats people with patience.
+Clean generated build artifacts:
 
-Contributions are welcome, particularly ideas and implementations that improve:
+make clean
 
-Accessibility
-Executive-function support
-User experience
-Task organization
-Focus assistance
-Non-judgmental productivity
-Mental-health-conscious design
+
+The included Makefile provides the primary development workflow.
+
+As the project evolves, additional setup instructions and dependencies may be documented here.
+
+---
+
+## Roadmap
+
+Familiar is an evolving project. Potential areas of future development include the following.
+
+### Core Functionality
+
+- [ ] Project management.
+- [ ] Task creation and organization.
+- [ ] Project selection and navigation.
+- [ ] Task completion tracking.
+- [ ] Persistent project and task data.
+- [ ] Improved input validation and error handling.
+
+### Focus and Organization
+
+- [ ] Task decomposition.
+- [ ] Next Step focus mode.
+- [ ] Brain dump and task organization.
+- [ ] Context restoration.
+- [ ] Project notes and memory.
+- [ ] Project progress tracking.
+
+### Personalization
+
+- [ ] Customizable familiar personalities.
+- [ ] Custom familiar creation.
+- [ ] Adjustable task difficulty.
+- [ ] Flexible focus sessions.
+- [ ] Optional reminders.
+- [ ] Customizable break schedules.
+
+### Accessibility and User Experience
+
+- [ ] Focus-friendly interaction patterns.
+- [ ] Improved keyboard accessibility.
+- [ ] Reduced cognitive overhead.
+- [ ] Flexible navigation and presentation.
+- [ ] Non-judgmental progress tracking.
+
+### Advanced Features
+
+- [ ] Optional AI-assisted planning.
+- [ ] Intelligent task decomposition.
+- [ ] Adaptive recommendations.
+- [ ] Gamified progression.
+
+These items are potential development goals, not guarantees or commitments to specific release dates.
+
+---
+
+## Contributing
+
+Contributions, suggestions, and constructive feedback are welcome.
+
+Familiar is built around the idea that technology should help people navigate difficulties without adding unnecessary pressure.
+
+Contributions are particularly valuable when they improve:
+
+- Accessibility and inclusive design.
+- Executive-function support.
+- Task organization and project management.
+- Focus assistance.
+- User experience.
+- Error handling and application reliability.
+- Testing and documentation.
+- Non-judgmental productivity mechanics.
+
+When proposing a feature, consider whether it genuinely reduces friction for the user or introduces another system they must manage.
+
+Small, focused improvements are welcome alongside larger architectural contributions.
+
+---
+
+## Project Status
+
+Familiar is under active development. Its current implementation focuses on establishing the application's core structure and project-management functionality.
+
+Many of the focus-support, personalization, and adaptive-planning concepts described in this README are planned directions rather than completed features.
+
+The project will continue to evolve as its architecture, functionality, and design principles mature.
+
+---
+
+## Philosophy
+
+Familiar is built on a simple belief:
+
+**You don't need to have everything figured out to take the next step.**
+
+Sometimes progress means completing a major milestone. Sometimes it means opening a document, writing one sentence, or finding your place again after a difficult week.
+
+Both matter.
+
+Familiar aims to make those next steps easier to find, easier to begin, and easier to return to.
+
+A few recommendations before publishing
+
+The README is now more structured and professional, but I recommend three additional considerations.
+
+    Keep the roadmap aligned with the code. I've labeled many features as planned and described the current implementation conservatively. Update the project-status section as functionality becomes available. Avoid marking roadmap items complete until they're implemented and tested.
+
+    Consider adding a license. If you want Familiar to be an open-source project, adding a LICENSE file will clarify how other people may use, modify, and distribute the code. MIT and Apache-2.0 are common choices, depending on your goals.
+
+    Consider adding screenshots as the UI develops. Your existing image gives visitors a visual introduction. Additional screenshots showing project creation, task selection, or the focus interface would make the README more informative as those features become available.
+
+One final thought: Familiar's strongest differentiator is not that it is another task manager, but that it is being designed around the difficulty of beginning and resuming work. I'd keep that message prominent throughout the README. It gives the project a clear identity and helps potential contributors understand what makes it worth building.
