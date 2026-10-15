@@ -26,8 +26,11 @@ namespace Familiar {
             int readMenuChoice();
             
             bool createProject();
+            bool createTask();
             bool handleChoice(int choice);
             void killSwitch();
+
+            std::optional<Project> getSelectedProject();
 
         
   

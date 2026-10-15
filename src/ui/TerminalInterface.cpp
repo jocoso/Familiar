@@ -80,6 +80,7 @@ void TerminalInterface::readWord(std::string &output) {
     }
 }
 
+
 bool TerminalInterface::createProject() {
     std::string pName;
     std::string pDesc;
@@ -99,6 +100,38 @@ bool TerminalInterface::createProject() {
     pm.createProject(p);
 
     return true;
+}
+
+bool TerminalInterface::createTask() {
+    std::string pName;
+    std::string pDesc;
+
+    std::cout << "Task Name?\n";
+    readWord(pName);
+
+    std::cout << "Write a description of your task.\n";
+    readWord(pDesc);
+
+    if (pName.empty() || pDesc.empty()) {
+        return false;
+    }
+
+    std::optional<Project> p = getSelectedProject();
+    if(!p.has_value()) 
+    {
+        std::cout << "No project selected.\n";
+        return false;
+    }
+
+    Familiar::Task t{0, pName, pDesc};
+    p->addTask(t);
+
+    return true;
+}
+
+std::optional<Project> TerminalInterface::getSelectedProject() 
+{
+    return selectedProject;
 }
 
 std::vector<Project> TerminalInterface::printProjectList() {
@@ -165,7 +198,13 @@ bool TerminalInterface::handleChoice(int choice) {
     }
 
     case 4: // Add a Task to Project
-        std::cout << "Task added to selected project.\n";
+        if (createProject()) {
+            std::cout << "Project created successfully!\n";
+        } else {
+            std::cout << "Project name and description "
+                      << "cannot be empty.\n";
+        }
+        std::cout << std::endl;
         break;
 
     case 5: // Exit

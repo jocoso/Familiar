@@ -1,11 +1,19 @@
 #include "domain/Task.h"
-#include "domain/Project.h"
+#include <utility>
 
 namespace Familiar {
-    Task::Task(const Project& parent, int id) 
-        : id(id), 
-        parentId(parent.getId())
+    Task::Task(
+        int id,
+        std::string pName,
+        std::string pDesc,
+        TaskStatus status
+    )
+        : id(id),
+          title(std::move(pName)),
+          description(std::move(pDesc)),
+          status(status)
     {}
+    
     int Task::getId() const {
         return id;
     }

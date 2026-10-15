@@ -60,24 +60,7 @@ namespace Familiar {
         return true;
 
     }
-    Task* Project::getTask(int taskId) {
-        auto it = std::find_if(
-            tasks.begin(),
-            tasks.end(),
-            [taskId](const Task& task)
-            {
-                return task.getId() == taskId;
-            }
-        );
-
-        if (it == tasks.end())
-        {
-            return nullptr;
-        }
-
-        return &(*it);
-
-    }
+   
     
     const Task* Project::getTask(int taskId) const
     {

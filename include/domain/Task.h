@@ -14,9 +14,15 @@ namespace Familiar {
         Cancelled=5
     };
     class Project;
+
     class Task {
         public:
-            Task(const Project& parent, int id);
+            Task(
+                int id, 
+                std::string pName, 
+                std::string pDesc, 
+                TaskStatus status = TaskStatus::Active
+            );
             
             int getId() const;
             int getProjectId() const;
