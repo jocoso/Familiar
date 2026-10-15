@@ -80,7 +80,6 @@ void TerminalInterface::readWord(std::string &output) {
     }
 }
 
-
 bool TerminalInterface::createProject() {
     std::string pName;
     std::string pDesc;
@@ -198,7 +197,7 @@ bool TerminalInterface::handleChoice(int choice) {
     }
 
     case 4: // Add a Task to Project
-        if (createProject()) {
+        if (createTask()) {
             std::cout << "Project created successfully!\n";
         } else {
             std::cout << "Project name and description "
