@@ -16,9 +16,12 @@ The goal is simple:
 
 <img width="3072" height="4080" alt="IMG_20261014_195628" src="https://github.com/user-attachments/assets/a7521577-fc9f-482e-b527-7bb81fc7c3ec" />
 
-(Sketch rendition of final product.)
 
-https://github.com/user-attachments/assets/4d6f3996-0f9d-4a06-9ffa-71a57a8c06aa
+
+
+https://github.com/user-attachments/assets/731c6b9e-9a07-49a8-b8e0-bc17d2bc6655
+
+(final product will be more advance. I know it looks basic and simple but I can't just go and start with the flashy stuff. This is a prototype.)
 
 
 
