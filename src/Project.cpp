@@ -1,10 +1,17 @@
 #include "domain/Project.h"
 
+#include <algorithm>
+#include <utility>
  
 namespace Familiar {
     
-    Project::Project(int id, std::string name, std::string desc, ProjectStatus parent=ProjectStatus::Active):
-        id(id), name(name), description(desc), status(parent) {}
+    Project::Project(
+        int id, 
+        std::string name, 
+        std::string desc, 
+        ProjectStatus status
+    ):
+        id(id), name(name), description(desc), status(status) {}
     int Project::getId() const {
         return id;
     }
@@ -26,5 +33,72 @@ namespace Familiar {
 
     void Project::setStatus(ProjectStatus status) {
         this->status = status;
+    }
+
+     // Task management
+    void Project::addTask(const Task& task) 
+    {
+        tasks.push_back(task);
+    }
+    bool Project::removeTask(int taskId)
+    {
+        auto it = std::find_if(
+            tasks.begin(),
+            tasks.end(),
+            [taskId](const Task& task) 
+            {
+                return task.getId() == taskId;
+            }
+        );
+
+        if(it == tasks.end())
+        {
+            return false;
+        }
+
+        tasks.erase(it);
+        return true;
+
+    }
+    Task* Project::getTask(int taskId) {
+        auto it = std::find_if(
+            tasks.begin(),
+            tasks.end(),
+            [taskId](const Task& task)
+            {
+                return task.getId() == taskId;
+            }
+        );
+
+        if (it == tasks.end())
+        {
+            return nullptr;
+        }
+
+        return &(*it);
+
+    }
+    
+    const Task* Project::getTask(int taskId) const
+    {
+        auto it = std::find_if(
+            tasks.begin(),
+            tasks.end(),
+            [taskId](const Task& task) {
+                return task.getId() == taskId;
+            }
+        );
+
+
+        if(it == tasks.end()) 
+        {
+            return nullptr;
+        }
+        return &(*it);
+    }
+
+    const std::vector<Task>& Project::getTask() const
+    {
+        return tasks;
     }
 };

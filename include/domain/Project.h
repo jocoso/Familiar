@@ -4,36 +4,9 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include "Task.h"
 
-/** 
-CLASS Project
-    PRIVATE:
-        id: Integer
-        name: String
-        description: String
-        status: ProjectStatus
-
-    PUBLIC:
-        CONSTRUCTOR Project(id, name, description, status)
-
-        getId() -> Integer
-        getName() -> String
-        setName(name: String)
-
-        getDescription() -> String
-        setDescription(description: String)
-
-        getStatus() -> ProjectStatus
-        setStatus(status: ProjectStatus)
-END CLASS
-
-
-ENUM ProjectStatus
-    Active = 1
-    Completed = 2
-    Archived = 3
-END ENUM
-*/
 
 namespace Familiar {
     enum ProjectStatus {
@@ -43,19 +16,39 @@ namespace Familiar {
     };
     class Project {
         public:
-            explicit Project(int id, std::string name, std::string desc, ProjectStatus);
+            explicit Project(
+                int id, 
+                std::string name, 
+                std::string desc, 
+                ProjectStatus status = ProjectStatus::Active
+            );
+
+            // Getters
             int getId() const;
             const std::string& getName() const;
-            void setName(const std::string& name);
-            const std::string& getDescription() const;
-            void setDescription(const std::string& desc);
             ProjectStatus getStatus() const;
+            const std::string& getDescription() const;
+
+            // Setter
+            void setName(const std::string& name);
+            void setDescription(const std::string& desc);
             void setStatus(ProjectStatus status);
-        public:
+
+            // Task management
+            void addTask(const Task& task);
+            bool removeTask(int taskId);
+            Task* getTask(int taskId);
+            const Task* getTask(int taskId) const;
+
+            const std::vector<Task>& getTask() const;
+        
+        private:
             int id = 0;
             std::string name; 
             std::string description;
+            std::vector<Task> tasks;
             ProjectStatus status = ProjectStatus::Active;
+
     };
 }
 

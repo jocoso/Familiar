@@ -1,20 +1,9 @@
+#ifndef FAMILIAR_TASK_H
+#define FAMILIAR_TASK_H
 
 #pragma once
 
 #include <string>
-#include "Project.h"
-
-/** 
-CLASS Task
-    PRIVATE:
-        taskData
-
-    PUBLIC:
-        initializeTask()
-        getTaskData()
-        updateTaskData()
-END CLASS
-*/
 
 namespace Familiar {
     enum class TaskStatus {
@@ -24,6 +13,7 @@ namespace Familiar {
         Blocked=4,
         Cancelled=5
     };
+    class Project;
     class Task {
         public:
             Task(const Project& parent, int id);
@@ -42,7 +32,7 @@ namespace Familiar {
             
         public:
             int id = 0;
-            int projectId = 0;
+            int parentId = 0;
 
             std::string title;
             std::string description;
@@ -50,3 +40,4 @@ namespace Familiar {
             TaskStatus status = TaskStatus::Pending;
     };
 }
+#endif

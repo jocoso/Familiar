@@ -1,9 +1,11 @@
 #include "domain/Task.h"
+#include "domain/Project.h"
 
 namespace Familiar {
     Task::Task(const Project& parent, int id) 
         : id(id), 
-        projectId(parent.getId()){}
+        parentId(parent.getId())
+    {}
     int Task::getId() const {
         return id;
     }

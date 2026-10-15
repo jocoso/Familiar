@@ -1,7 +1,8 @@
-#include "Familiar.h"
-#include "ui/TerminalInterface.h"
 
 #include <string>
+
+#include "Familiar.h"
+#include "ui/TerminalInterface.h"
 
 namespace Familiar {
 
