@@ -14,9 +14,9 @@ The goal is simple:
 
 **Help users turn overwhelming projects into manageable actions, regain their bearings when they lose momentum, and move forward without unnecessary pressure.**
 
-<img width="524" height="443" alt="Familiar application preview" src="https://github.com/user-attachments/assets/5460e2ea-1636-4d28-88a1-cf94d0f2516b" />
+<img width="3072" height="4080" alt="IMG_20261014_195628" src="https://github.com/user-attachments/assets/a7521577-fc9f-482e-b527-7bb81fc7c3ec" />
 
-
+(Sketch rendition of final product.)
 
 https://github.com/user-attachments/assets/4d6f3996-0f9d-4a06-9ffa-71a57a8c06aa
 
