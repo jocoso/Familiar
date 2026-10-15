@@ -46,7 +46,7 @@ int TerminalInterface::readMenuChoice() {
             return choice;
         }
 
-        std::cout << "Invalid choice. Please select a number from 1 to 4.\n\n";
+        std::cout << "Invalid choice. Please select a number from 1 to .\n\n";
     }
 }
 

@@ -18,7 +18,6 @@ namespace Familiar {
             ProjectManager pm;
             std::optional<Project> selectedProject;
             std::vector<Project> printProjectList();
-            std::vector<Project> printProjectList();
             void showTitle() const;
             void showMenu() const;
     
