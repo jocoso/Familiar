@@ -23,7 +23,11 @@ https://github.com/user-attachments/assets/731c6b9e-9a07-49a8-b8e0-bc17d2bc6655
 
 (final product will be more advance. I know it looks basic and simple but I can't just go and start with the flashy stuff. This is a prototype.)
 
+**Current Version Goal:** Lay a solid foundation for the program. This version is complete when the program supports all the basic features expected of a project management application.
 
+**Next Version Goal:** Integrate machine learning into how the program processes projects. The program should be able to suggest project templates based on the user's needs.
+
+The author is researching machine learning by reading _Hands-On Machine Learning with Scikit-Learn and TensorFlow_ by Aurélien Géron, while using Herbert Schildt's _C++: The Complete Reference_ as a guide to C++ development.
 
 ---
 
