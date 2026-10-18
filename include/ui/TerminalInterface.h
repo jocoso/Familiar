@@ -18,8 +18,13 @@ namespace Familiar {
             ProjectManager pm;
             std::optional<Project> selectedProject;
             std::vector<Project> printProjectList();
+            
             void showTitle() const;
             void showMenu() const;
+            void printReport() const;
+            void printSelectedProjectTask();
+            void printProject(const Project& p);
+            void printTask(const std::vector<Task>& t);
     
             int readNumber();
             void readWord(std::string& output);
@@ -31,8 +36,6 @@ namespace Familiar {
             void killSwitch();
 
             std::optional<Project> getSelectedProject();
-
-        
   
     };
 

@@ -18,9 +18,9 @@ namespace Familiar
         return projects;
     }
 
-    const Project* ProjectManager::findProject(int id) const
+    Project* ProjectManager::findProject(int id)
     {
-        for (const Project& project : projects)
+        for (Project& project : projects)
         {
             if (project.getId() == id)
             {
@@ -45,6 +45,19 @@ namespace Familiar
         }
 
         return false;
+    }
+
+    bool ProjectManager::addTaskToProject(int pId, const Task& t) 
+    {
+        Project* p = findProject(pId);
+
+        if (p == nullptr)
+        {
+            return false;
+        }
+
+        p->addTask(t);
+        return true;
     }
 
     bool ProjectManager::deleteProject(int id)

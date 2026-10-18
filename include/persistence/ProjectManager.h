@@ -18,7 +18,9 @@ namespace Familiar
 
         const std::vector<Project>& listProjects() const;
 
-        const Project* findProject(int id) const;
+        bool addTaskToProject(int projectId, const Task& task);
+
+        Project* findProject(int id);
 
         bool updateProject(int id, const Project& updatedProject);
 
