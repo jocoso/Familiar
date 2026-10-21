@@ -6,6 +6,13 @@
 
 #include "ErrorHandler.h"
 
+
+const int CREATE_PROJECT                = 1;
+const int SELECT_PROJECT                = 2;
+const int DISPLAY_LIST                  = 3;
+const int PUSH_TASK_ON_SELECTED_PROJECT = 4;
+const int EXIT                          = 5;
+
 namespace Familiar {
 
     void TerminalInterface::showTitle() const {
@@ -229,7 +236,7 @@ namespace Familiar {
 
     bool TerminalInterface::handleChoice(int choice) {
         switch (choice) {
-            case 1: // Create projects
+            case CREATE_PROJECT: // Create projects
                 if (createProject()) {
                     std::cout << "Project created successfully!\n";
                 } else {
@@ -239,7 +246,7 @@ namespace Familiar {
                 std::cout << std::endl;
                 break;
 
-            case 2: { // Select projects
+            case SELECT_PROJECT: { // Select projects
                 std::vector<Project> projects = printProjectList();
 
                 if (projects.empty())
@@ -263,13 +270,13 @@ namespace Familiar {
                 break;
             }
 
-            case 3: // Display selected project and its tasks
+            case DISPLAY_LIST: // Display selected project and its tasks
             {
                 printProjectList();
                 break;
             }
 
-            case 4: // Add a Task to Project
+            case PUSH_TASK_ON_SELECTED_PROJECT: // Add a Task to Project
                 if (createTask()) {
                     std::cout << "Project created successfully!\n";
                 } else {
@@ -279,7 +286,7 @@ namespace Familiar {
                 std::cout << std::endl;
                 break;
 
-            case 5: // Exit
+            case EXIT: // Exit
                 killSwitch();
                 std::cout << "Goodbye!\n\n";
                 break;
