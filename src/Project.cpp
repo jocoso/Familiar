@@ -80,7 +80,7 @@ namespace Familiar {
         return &(*it);
     }
 
-    const std::vector<Task>& Project::getTask() const
+    const std::vector<Task>& Project::getTasks() const
     {
         return tasks;
     }

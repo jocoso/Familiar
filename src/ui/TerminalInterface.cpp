@@ -149,9 +149,9 @@ namespace Familiar {
 
         printProject(*p);
 
-        std::vector<Task> t_list =  p->getTask();
+        const std::vector<Task>& t_list =  p->getTasks();
 
-        printTask(t_list);
+        printTasks(t_list);
     }
 
     void TerminalInterface::printProject(const Project& p)
@@ -161,7 +161,7 @@ namespace Familiar {
         std::cout << "Status: " << p.getStatus() << "\n";
     }
 
-    void TerminalInterface::printTask(const std::vector<Task>& t) 
+    void TerminalInterface::printTasks(const std::vector<Task>& t) 
     {
         std::cout << "[ Tasks ]\n";
 
@@ -196,12 +196,20 @@ namespace Familiar {
         readWord(pDesc);
 
         if (pName.empty() || pDesc.empty()) {
+            std::cout << "Task name and description cannot be empty.\n";
             return false;
         }
 
 
         Task t{0, pName, pDesc};
-        selectedProject->addTask(t);
+
+        if(!pm.addTaskToProject(selectedProject->getId(), t))
+        {
+            std::cout << "Failed to add task to project.\n";
+            return false;
+        }
+
+        selectedProject = *pm.findProject(selectedProject->getId());
 
         return true;
     }
@@ -225,7 +233,8 @@ namespace Familiar {
                 std::cout << index++ << ". " << p.getName() << '\n';
                 std::cout << "   Description: " << p.getDescription() << '\n';
 
-                printTask(p.getTask());
+                const std::vector<Familiar::Task> t = p.getTasks();
+                printTasks(t);
             }
         }
 
@@ -278,9 +287,9 @@ namespace Familiar {
 
             case PUSH_TASK_ON_SELECTED_PROJECT: // Add a Task to Project
                 if (createTask()) {
-                    std::cout << "Project created successfully!\n";
+                    std::cout << "Task created successfully!\n";
                 } else {
-                    std::cout << "Project name and description "
+                    std::cout << "Task name and description "
                             << "cannot be empty.\n";
                 }
                 std::cout << std::endl;

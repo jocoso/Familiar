@@ -24,7 +24,7 @@ namespace Familiar {
             void printReport() const;
             void printSelectedProjectTask();
             void printProject(const Project& p);
-            void printTask(const std::vector<Task>& t);
+            void printTasks(const std::vector<Task>& t);
     
             int readNumber();
             void readWord(std::string& output);

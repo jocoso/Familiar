@@ -37,10 +37,9 @@ namespace Familiar {
             // Task management
             void addTask(const Task& task);
             bool removeTask(int taskId);
-            Task* getTask(int taskId);
             const Task* getTask(int taskId) const;
 
-            const std::vector<Task>& getTask() const;
+            const std::vector<Task>& getTasks() const;
         
         private:
             int id = 0;
