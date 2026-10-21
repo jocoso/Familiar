@@ -19,7 +19,9 @@ The goal is simple:
 
 
 
-https://github.com/user-attachments/assets/731c6b9e-9a07-49a8-b8e0-bc17d2bc6655
+https://github.com/user-attachments/assets/25125860-cdec-4c11-9304-a3056b838925
+
+
 
 (final product will be more advance. I know it looks basic and simple but I can't just go and start with the flashy stuff. This is a prototype.)
 
