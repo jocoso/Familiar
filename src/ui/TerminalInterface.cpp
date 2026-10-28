@@ -253,7 +253,7 @@ namespace Familiar {
     {
         std::ofstream datafile;
         datafile.open("datafile.txt");
-        datafile << "Data. \n";
+        datafile << "[This is where I would put my data... If I had anyyyy.] \n";
         datafile.close();
 
         std::cout << "Data Saved! \n\n";
