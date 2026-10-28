@@ -35,6 +35,8 @@ namespace Familiar {
             bool handleChoice(int choice);
             void killSwitch();
 
+            bool SaveData();
+
             std::optional<Project> getSelectedProject();
   
     };

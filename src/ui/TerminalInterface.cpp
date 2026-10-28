@@ -3,6 +3,8 @@
 #include <iostream>
 #include <limits>
 #include <stdexcept>
+#include <iostream>
+#include <fstream>
 
 #include "ErrorHandler.h"
 
@@ -243,11 +245,28 @@ namespace Familiar {
         return projects;
     }
 
+
+    // ================================ //
+
+
+    bool TerminalInterface::SaveData()
+    {
+        std::ofstream datafile;
+        datafile.open("datafile.txt");
+        datafile << "Data. \n";
+        datafile.close();
+
+        std::cout << "Data Saved! \n\n";
+
+        return true;
+    }
+
     bool TerminalInterface::handleChoice(int choice) {
         switch (choice) {
             case CREATE_PROJECT: // Create projects
                 if (createProject()) {
                     std::cout << "Project created successfully!\n";
+                    SaveData();
                 } else {
                     std::cout << "Project name and description "
                             << "cannot be empty.\n";
