@@ -1,1 +1,10 @@
-Data. 
+=== PROJECTS ===
+Familiar
+An app that caters to the imperfect.
+
+NON-SENSE
+A comic about growing up.
+
+Read EARTHSEA
+My favorite book.
+

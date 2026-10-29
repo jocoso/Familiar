@@ -4,23 +4,28 @@
 #define PROJECTMANAGER_H
 
 #include <vector>
+#include <memory>
 #include "domain/Project.h"
+
+
 
 namespace Familiar
 {
     class ProjectManager
     {
     private:
-        std::vector<Project> projects;
+        std::vector<std::unique_ptr<Project>> projects;
 
     public:
-        bool createProject(const Project& project);
+        const std::vector<std::unique_ptr<Project>>& 
+        getProjects() const;
 
-        const std::vector<Project>& listProjects() const;
+        bool createProject(std::unique_ptr<Project> project);
 
         bool addTaskToProject(int projectId, const Task& task);
 
-        Project* findProject(int id);
+        Project *findProject(int id);
+        const Project* findProject(int id) const;
 
         bool updateProject(int id, const Project& updatedProject);
 

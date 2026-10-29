@@ -10,22 +10,24 @@ namespace Familiar {
         std::string name, 
         std::string desc, 
         ProjectStatus status
-    ):
-        id(id), name(name), description(desc), status(status) {}
+    ): brain(id, std::move(name), NodeType::Project), 
+        desc(std::move(desc)), 
+        status(status) {}
+
     int Project::getId() const {
-        return id;
+        return brain.id;
     }
     const std::string& Project::getName() const {
-        return name;
+        return brain.name;
     } 
     void Project::setName(const std::string& name) {
-        this->name = name;
+        brain.name = name;
     }
     const std::string& Project::getDescription() const {
-        return description;
+        return desc;
     }
     void Project::setDescription(const std::string& desc) {
-        this->description = desc;
+        this->desc = desc;
     }
     ProjectStatus Project::getStatus() const {
         return status;
@@ -61,6 +63,18 @@ namespace Familiar {
 
     }
    
+    Project& Project::operator=(const Project& other)
+    {
+        if(this != &other)
+        {
+
+            brain = other.brain;
+            desc = other.desc;
+            status = other.status;
+        }
+
+        return *this;
+    }
     
     const Task* Project::getTask(int taskId) const
     {

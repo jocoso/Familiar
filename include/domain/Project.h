@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "Task.h"
+#include "Node.h"
 
 
 namespace Familiar {
@@ -41,10 +42,10 @@ namespace Familiar {
 
             const std::vector<Task>& getTasks() const;
         
+            Project& operator=(const Project& other);
         private:
-            int id = 0;
-            std::string name; 
-            std::string description;
+            Node brain;
+            std::string desc;
             std::vector<Task> tasks;
             ProjectStatus status = ProjectStatus::Active;
 
