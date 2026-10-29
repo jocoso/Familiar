@@ -4,27 +4,41 @@
 #include "persistence/ProjectManager.h"
 #include "domain/Project.h"
 
+
 namespace Familiar
 {
-    bool ProjectManager::createProject(const Project& project)
+    bool ProjectManager::createProject(std::unique_ptr<Project> project)
     {
-        projects.push_back(project);
+        projects.push_back(std::move(project));
         return true;
     }
 
-    const std::vector<Project>& ProjectManager::listProjects()
- const   
+
+    const std::vector<std::unique_ptr<Project>>& 
+        ProjectManager::getProjects() const   
     {
         return projects;
     }
 
-    Project* ProjectManager::findProject(int id)
+    Project* ProjectManager::findProject(int id) 
     {
-        for (Project& project : projects)
+        for(const auto& project : projects)
         {
-            if (project.getId() == id)
+            if(project->getId() == id) {
+                return project.get();
+            }
+        }
+
+        return nullptr;
+    }
+
+    const Project* ProjectManager::findProject(int id)const
+    {
+        for (const auto& project : projects)
+        {
+            if (project->getId() == id)
             {
-                return &project;
+                return project.get();
             }
         }
 
@@ -35,28 +49,27 @@ namespace Familiar
         int id,
         const Project& updatedProject)
     {
-        for(Project& project : projects) 
-        {
-            if (project.getId() == id) 
-            {
-                project = updatedProject;
-                return true;
-            }
-        }
+        Project* project = findProject(id);
 
-        return false;
-    }
-
-    bool ProjectManager::addTaskToProject(int pId, const Task& t) 
-    {
-        Project* p = findProject(pId);
-
-        if (p == nullptr)
+        if(project == nullptr)
         {
             return false;
         }
 
-        p->addTask(t);
+        *project = updatedProject;
+        return true;
+    }
+
+    bool ProjectManager::addTaskToProject(int pId, const Task& t) 
+    {
+        Project* project = findProject(pId);
+
+        if (project == nullptr)
+        {
+            return false;
+        }
+
+        project->addTask(t);
         return true;
     }
 
@@ -65,9 +78,9 @@ namespace Familiar
         auto it = std::find_if(
             projects.begin(),
             projects.end(),
-            [id](const Project& project)
+            [id](const std::unique_ptr<Project>& project)
             {
-                return project.getId() == id;
+                return project->getId() == id;
             }
         );
 

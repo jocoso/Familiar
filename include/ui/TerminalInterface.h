@@ -1,7 +1,6 @@
 #ifndef FAMILIAR_TERMINAL_INTERFACE_H
 #define FAMILIAR_TERMINAL_INTERFACE_H
 
-#include <optional>
 #include <string>
 #include <vector>
 
@@ -16,8 +15,10 @@ namespace Familiar {
         private:
             bool isRunning = true;
             ProjectManager pm;
-            std::optional<Project> selectedProject;
-            std::vector<Project> printProjectList();
+            Project* selectedProject = nullptr;
+            
+            const std::vector<std::unique_ptr<Project>>&
+            getProjectList();
             
             void showTitle() const;
             void showMenu() const;
@@ -36,8 +37,9 @@ namespace Familiar {
             void killSwitch();
 
             bool SaveData();
+            std::string saveProjectList(std::ofstream& datafile);
 
-            std::optional<Project> getSelectedProject();
+            Project* getSelectedProject();
   
     };
 

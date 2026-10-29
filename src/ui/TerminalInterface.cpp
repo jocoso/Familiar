@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 
+
 #include "ErrorHandler.h"
 
 
@@ -132,28 +133,32 @@ namespace Familiar {
             return false;
         }
 
-        Familiar::Project p{0, pName, pDesc, Familiar::ProjectStatus::Active};
+        auto p = std::make_unique<Project>(
+            0,
+            pName,
+            pDesc,
+            ProjectStatus::Active
+        );
 
-        pm.createProject(p);
+        pm.createProject(std::move(p));
+
+        std::cout << '\n';
 
         return true;
     }
 
     void TerminalInterface::printSelectedProjectTask()
     {
-        std::optional<Project> p = getSelectedProject();
+        Project* project = getSelectedProject();
         
-        if(!p)
+        if(project == nullptr)
         {
             std::cout << "No project selected.\n";
             return;
         }
 
-        printProject(*p);
-
-        const std::vector<Task>& t_list =  p->getTasks();
-
-        printTasks(t_list);
+        printProject(*project);
+        printTasks(project->getTasks());
     }
 
     void TerminalInterface::printProject(const Project& p)
@@ -205,37 +210,83 @@ namespace Familiar {
 
         Task t{0, pName, pDesc};
 
-        if(!pm.addTaskToProject(selectedProject->getId(), t))
+        const int projectId = selectedProject->getId();
+
+        if(!pm.addTaskToProject(projectId, t))
         {
             std::cout << "Failed to add task to project.\n";
             return false;
         }
 
-        selectedProject = *pm.findProject(selectedProject->getId());
+        const auto& project = pm.findProject(projectId);
+
+        if(!project)
+        {
+            std::cout << "Task was added, but the project could not be retrieved.\n";
+            return false;
+        }
+
+        *selectedProject = *project;
 
         return true;
     }
 
-    std::optional<Project> TerminalInterface::getSelectedProject() 
+    Project* TerminalInterface::getSelectedProject() 
     {
         return selectedProject;
     }
 
-    std::vector<Project> TerminalInterface::printProjectList() {
-        std::cout << "=== PROJECTS ===\n";
+    void TerminalInterface::printReport() const 
+    {
+        if(selectedProject == nullptr)
+        {
+            std::cout << "No project selected.\n\n";
+            return;
+        }
 
-        std::vector<Project> projects = pm.listProjects();
+        std::cout << "=== SELECTED PROJECT ===\n";
+        std::cout << selectedProject->getName() << '\n';
+        std::cout << selectedProject->getDescription() << '\n';
+        std::cout << "Status: " << selectedProject->getStatus() << '\n';
+
+        std::cout << "\n[ Tasks ]\n";
+
+        const auto tasks = selectedProject->getTasks();
+
+        if(tasks.empty())
+        {
+            std::cout << "No tasks available.\n";
+        }
+        else
+        {
+            for(std::size_t i = 0; i < tasks.size(); ++i)
+            {
+                std::cout << i + 1 << " - "
+                    << tasks[i].getTitle() << '\n';
+                std::cout << tasks[i].getDescription() << '\n';
+            }
+        }
+        std::cout << '\n';
+    }
+
+    const std::vector<std::unique_ptr<Project>>& 
+    TerminalInterface::getProjectList() 
+    
+    {
+        std::cout << "=== PROJECTS ===\n";
+        const auto& projects = pm.getProjects();
 
         if (projects.empty()) {
             std::cout << "No projects found.\n";
         } else {
             int index = 1;
 
-            for (const Project &p : projects) {
-                std::cout << index++ << ". " << p.getName() << '\n';
-                std::cout << "   Description: " << p.getDescription() << '\n';
+            for (const auto& p : projects) {
+                std::cout << index++ << ". " << p->getName() << '\n';
+                std::cout << "   Description: " 
+                    << p->getDescription() << '\n';
 
-                const std::vector<Familiar::Task> t = p.getTasks();
+                const std::vector<Task> t = p->getTasks();
                 printTasks(t);
             }
         }
@@ -248,16 +299,50 @@ namespace Familiar {
 
     // ================================ //
 
+ 
+
+
+    std::string TerminalInterface::saveProjectList(std::ofstream& datafile)
+    {
+
+        std::string out = "";
+
+        for (const auto& project : pm.getProjects()) {
+            // Process project without copying it
+            datafile << project->getName() << '\n';
+            datafile << project->getDescription() << "\n\n";  // Space '\n' delimiter
+        }
+
+
+
+        return out;
+
+    }
+
 
     bool TerminalInterface::SaveData()
     {
-        std::ofstream datafile;
-        datafile.open("datafile.txt");
-        datafile << "[This is where I would put my data... If I had anyyyy.] \n";
+        std::ofstream datafile("datafile.txt");
+        
+        if(!datafile.is_open()) 
+        {
+            std::cerr << "Failed to open datafile.txt for writing.\n";
+            return false;
+        }
+
+        datafile << "=== PROJECTS ===\n";
+
+        saveProjectList(datafile);
+        
+        if(!datafile)
+        {
+            std::cerr << "Failed to write project data.\n";
+            return false;
+        }
+
         datafile.close();
-
-        std::cout << "Data Saved! \n\n";
-
+        
+        std::cout << "Data saved!\n\n";
         return true;
     }
 
@@ -275,7 +360,7 @@ namespace Familiar {
                 break;
 
             case SELECT_PROJECT: { // Select projects
-                std::vector<Project> projects = printProjectList();
+                const auto& projects = getProjectList();
 
                 if (projects.empty())
                     break;
@@ -290,7 +375,7 @@ namespace Familiar {
                     break;
                 }
 
-                selectedProject = projects[selection - 1];
+                selectedProject = projects[selection - 1].get();
 
                 std::cout << "Selected Project: \n"
                         << selectedProject->getName() << "\n\n";
@@ -300,7 +385,7 @@ namespace Familiar {
 
             case DISPLAY_LIST: // Display selected project and its tasks
             {
-                printProjectList();
+                getProjectList();
                 break;
             }
 
