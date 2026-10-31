@@ -29,6 +29,7 @@ namespace Familiar {
             const std::string& getName() const;
             ProjectStatus getStatus() const;
             const std::string& getDescription() const;
+            void setId(int id);
 
             // Setter
             void setName(const std::string& name);

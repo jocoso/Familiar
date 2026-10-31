@@ -1,10 +1,12 @@
-=== PROJECTS ===
-Familiar
-An app that caters to the imperfect.
-
-NON-SENSE
-A comic about growing up.
-
-Read EARTHSEA
-My favorite book.
-
+ROBOT_FAMILIAR_DATA_V1
+2
+1
+"Robot Familiar"
+"Inspired by Pointy Hat naming convention."
+1
+0
+2
+"NON-SENSE"
+"A comic about daily life of someone living in post 2020."
+1
+0

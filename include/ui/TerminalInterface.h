@@ -36,7 +36,9 @@ namespace Familiar {
             bool handleChoice(int choice);
             void killSwitch();
 
-            bool SaveData();
+            bool saveData();
+            bool loadData();
+            void loadProjectList(std::ifstream& datafile);
             std::string saveProjectList(std::ofstream& datafile);
 
             Project* getSelectedProject();
