@@ -17,6 +17,9 @@ namespace Familiar {
     int Project::getId() const {
         return brain.id;
     }
+    void Project::setId(int id) {
+        brain.id = id;
+    }
     const std::string& Project::getName() const {
         return brain.name;
     } 

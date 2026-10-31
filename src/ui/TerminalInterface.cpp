@@ -5,6 +5,9 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <iomanip> // std::quoted
+#include <vector>
+#include <memory>
 
 
 #include "ErrorHandler.h"
@@ -270,9 +273,9 @@ namespace Familiar {
     }
 
     const std::vector<std::unique_ptr<Project>>& 
-    TerminalInterface::getProjectList() 
-    
+        TerminalInterface::getProjectList() 
     {
+        loadData();
         std::cout << "=== PROJECTS ===\n";
         const auto& projects = pm.getProjects();
 
@@ -305,24 +308,134 @@ namespace Familiar {
     std::string TerminalInterface::saveProjectList(std::ofstream& datafile)
     {
 
-        std::string out = "";
+        datafile << "ROBOT_FAMILIAR_DATA_V1\n";
+        const auto& projects = pm.getProjects();
 
-        for (const auto& project : pm.getProjects()) {
+        datafile << projects.size() << '\n';
+
+        for (const auto& project : projects) {
+
+            if(!project) continue;
+
             // Process project without copying it
-            datafile << project->getName() << '\n';
-            datafile << project->getDescription() << "\n\n";  // Space '\n' delimiter
+            datafile << project->getId() << '\n';
+            datafile << std::quoted(project->getName()) << '\n';
+            datafile << std::quoted(project->getDescription()) << '\n';
+            datafile << static_cast<int>(project->getStatus()) << '\n';  // Space '\n' delimiter
+
+            const auto tasks = project->getTasks();
+
+            datafile << tasks.size() << '\n';
+
+            for(const auto& task : tasks)
+            {
+                datafile << task.getId() << '\n';
+                datafile << std::quoted(task.getTitle()) << '\n';
+                datafile << std::quoted(task.getDescription()) << '\n';
+            }
+
         }
 
-
-
-        return out;
+        return "";
 
     }
 
-
-    bool TerminalInterface::SaveData()
+    void TerminalInterface::loadProjectList(std::ifstream& datafile)
     {
-        std::ofstream datafile("datafile.txt");
+        std::string fileVersion;
+
+        if (!(datafile >> fileVersion) ||
+            fileVersion != "ROBOT_FAMILIAR_DATA_V1")
+        {
+            std::cerr << "Invalid or unsupported data file format.\n";
+            return;
+        }
+
+
+        std::size_t projectCount = 0;
+
+        if (!(datafile >> projectCount))
+        {
+            std::cerr << "Failed to read project count.\n";
+            return;
+        }
+
+        for (std::size_t i = 0; i < projectCount; ++i)
+        {
+            int projectId;
+            int statusValue;
+            std::size_t taskCount;
+
+            std::string name;
+            std::string description;
+
+            if(!(datafile >> projectId
+                        >> std::quoted(name)
+                        >> std::quoted(description)
+                        >> statusValue
+                        >> taskCount))
+            {
+                std::cerr << "Incomplete project record found.\n";
+                return;
+            }
+
+            if (statusValue < 0 || statusValue > 2)
+            {
+                std::cerr << "Invalid project status.\n";
+                return;
+            }
+
+            auto project = std::make_unique<Project>(
+                projectId,
+                name,
+                description,
+                static_cast<ProjectStatus>(statusValue)
+            );
+
+            if(!pm.loadProject(std::move(project)))
+            {
+                std::cerr << "Failed to load project or duplicate ID found. \n";
+            }
+
+            for(std::size_t j = 0; j < taskCount; ++j)
+            {
+                int taskId;
+                std::string taskTitle;
+                std::string taskDescription;
+
+                if (!(datafile >> taskId
+                            >> std::quoted(taskTitle)
+                            >> std::quoted(taskDescription)))
+                {
+                    std::cerr << "Incomplete task record found.\n";
+                    return;
+                }
+
+                Task task{
+                    taskId,
+                    taskTitle,
+                    taskDescription
+                };
+
+                if (!pm.addTaskToProject(projectId, task))
+                {
+                    std::cerr << "Failed to restore task "
+                            << taskId << " to project "
+                            << projectId << ".\n";
+                }
+            }
+        }
+
+        std::cout << "Projects and tasks loaded successfully!\n\n";
+    }
+
+
+    bool TerminalInterface::saveData()
+    {
+        std::ofstream datafile(
+            "datafile.txt",
+            std::ios::out | std::ios::trunc
+        );
         
         if(!datafile.is_open()) 
         {
@@ -330,19 +443,41 @@ namespace Familiar {
             return false;
         }
 
-        datafile << "=== PROJECTS ===\n";
-
         saveProjectList(datafile);
         
-        if(!datafile)
+        if(!datafile.good())
         {
             std::cerr << "Failed to write project data.\n";
             return false;
         }
 
         datafile.close();
-        
-        std::cout << "Data saved!\n\n";
+
+        if (datafile.fail())
+        {
+            std::cerr << "Failed to close datafile.txt correctly.\n";
+            return false;
+        }
+
+        std::cout << "Projects and tasks saved successfully!\n\n";
+
+        return true;
+    }
+
+    bool TerminalInterface::loadData()
+    {
+        std::ifstream datafile("datafile.txt");
+
+        if(!datafile.is_open()) 
+        {
+            std::cerr << "Not existing datafile.txt found.\n";
+            return false;
+        }
+
+        pm.clearProjects();
+
+        loadProjectList(datafile);
+
         return true;
     }
 
@@ -351,7 +486,7 @@ namespace Familiar {
             case CREATE_PROJECT: // Create projects
                 if (createProject()) {
                     std::cout << "Project created successfully!\n";
-                    SaveData();
+                    saveData();
                 } else {
                     std::cout << "Project name and description "
                             << "cannot be empty.\n";
@@ -392,6 +527,7 @@ namespace Familiar {
             case PUSH_TASK_ON_SELECTED_PROJECT: // Add a Task to Project
                 if (createTask()) {
                     std::cout << "Task created successfully!\n";
+                    saveData();
                 } else {
                     std::cout << "Task name and description "
                             << "cannot be empty.\n";
@@ -400,6 +536,7 @@ namespace Familiar {
                 break;
 
             case EXIT: // Exit
+                saveData();
                 killSwitch();
                 std::cout << "Goodbye!\n\n";
                 break;
@@ -415,11 +552,12 @@ namespace Familiar {
     void TerminalInterface::run() {
         showTitle();
 
+        loadData();
         while (isRunning) {
             try {
                 int choice = readMenuChoice();
                 handleChoice(choice);
-            } catch (const std::runtime_error &e) {
+            } catch (const std::runtime_error& e) {
                 std::cerr << '\n' << e.what() << '\n';
                 killSwitch();
             }
